@@ -114,5 +114,9 @@ admin_button.grid(row=0,column=1,padx=100,pady=74)
 # admin_button.
 login_button = Button(frame1,text="Customer",bg="#72FFFF",fg="black",font= ("Code New Roman",10,"bold"),height=10,width=20,command=customer_login)
 login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+
 
 root.mainloop()
