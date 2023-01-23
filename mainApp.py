@@ -5,6 +5,7 @@ root.geometry("1944x1080")
 root["background"] = "#5800FF"
 root.title("Bank Management System")
 
+
 def admin_page_open():
     admin_page = Toplevel()
     admin_page.geometry("1100x750")
@@ -24,7 +25,8 @@ def admin_page_open():
     img_of_admin = Image.open("image/admin_img.png")
     img_of_admin = img_of_admin.resize((720,700))     #resizing image
     admin_img = ImageTk.PhotoImage(img_of_admin)
-    admin_img_label = Label(admin_image_frame,image=admin_img).grid(row=0,column=8,padx=50)
+    admin_img_label = Label(admin_image_frame,image=admin_img)
+    admin_img_label.grid(row=0,column=8,padx=50)
 
 def login():
     login_page = Toplevel()
