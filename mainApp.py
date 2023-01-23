@@ -67,6 +67,8 @@ def customer_page_open():
     customer_img = ImageTk.PhotoImage(customer_img1)
     label_customer_img = Label(customer_image_frame,image=customer_img).grid(row=0,column=8,padx=50)
 
+
+
 def balance_enquiry():
     balance_enquiry = Toplevel()
     balance_enquiry.title("Balance Enquiry")
@@ -111,6 +113,9 @@ admin_button = Button(frame1,text="Admin",bg="#72FFFF",fg="black",font = ("Code 
 admin_button.grid(row=0,column=1,padx=100,pady=74)
 # admin_button.
 login_button = Button(frame1,text="Customer",bg="#72FFFF",fg="black",font= ("Code New Roman",10,"bold"),height=10,width=20,command=customer_login)
+login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
 login_button.grid(row=1,column=1,pady=65)
 
 
