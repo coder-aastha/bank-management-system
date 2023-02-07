@@ -5,6 +5,7 @@ root.geometry("1944x1080")
 root["background"] = "#5800FF"
 root.title("Bank Management System")
 
+
 def admin_page_open():
     admin_page = Toplevel()
     admin_page.geometry("1100x750")
@@ -24,7 +25,8 @@ def admin_page_open():
     img_of_admin = Image.open("image/admin_img.png")
     img_of_admin = img_of_admin.resize((720,700))     #resizing image
     admin_img = ImageTk.PhotoImage(img_of_admin)
-    admin_img_label = Label(admin_image_frame,image=admin_img).grid(row=0,column=8,padx=50)
+    admin_img_label = Label(admin_image_frame,image=admin_img)
+    admin_img_label.grid(row=0,column=8,padx=50)
 
 def login():
     login_page = Toplevel()
@@ -111,7 +113,12 @@ label_img = Label(frame2,image=bank_img).grid(row=0,column=0)
 #Creating buttons
 admin_button = Button(frame1,text="Admin",bg="#72FFFF",fg="black",font = ("Code New Roman",10,"bold"),height=10,width=20,command=login)
 admin_button.grid(row=0,column=1,padx=100,pady=74)
+# admin_button.
 login_button = Button(frame1,text="Customer",bg="#72FFFF",fg="black",font= ("Code New Roman",10,"bold"),height=10,width=20,command=customer_login)
 login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+login_button.grid(row=1,column=1,pady=65)
+
 
 root.mainloop()
