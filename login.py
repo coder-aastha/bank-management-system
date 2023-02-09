@@ -1,36 +1,81 @@
 #login page
 from tkinter import*
 from tkinter import messagebox
+import sqlite3
 
 root=Tk()
 root.title('LOGIN')
 root.geometry('925x500+300+200')
 root.configure(bg='#fff')
 
-#function for checking the entered username and password
-def signin():
-    username= user.get()
-    password= code.get()
 
-    if username=='admin' and password=='root':
-        print('welcome')
-        screen=Toplevel(root)
-        screen.title("App")
-        screen.geometry('925x500+300+200')
-        screen.config(bg="white")
+#Create a database or connect to
+conn= sqlite3.connect('login_book.db')
 
-        Label(screen,text='Welcome', bg='#fff', font=('Calibri(Body)', 50,'bold')).pack(expand=True)
+#create cursor 
+#cursor class is an instance using which you can 
+#invoke methods that execute SQLite Statements
+#fetch data from the result sets of the queries
+c=conn.cursor()
 
-        screen.mainloop()
 
-    elif username!='admin' and password!='root':
-        messagebox.showerror("Invalid","Invalid username and password")
 
-    elif password!='root':
-        messagebox.showerror("Invalid", "Invalid Password")
+# #Create table
+# c.execute("""CREATE TABLE address (
+#     Username varchar,
+#     password varchar
+# )""")
+# print("Table created successfully")
 
-    elif username!='admin':
-        messagebox.showerror("Invalid", "Invalid Username")
+
+def submit():
+    #create a databases or connect to one
+    conn=sqlite3.connect('login_book.db')
+
+    #create cursor
+    c=conn.cursor()
+    
+    #Insert into table
+    c.execute("INSERT INTO address VALUES (:username, :password)",{
+        'username':user.get(),
+        'password':code.get()
+    })
+
+
+
+    #showinfo messagebox
+    messagebox.showinfo("Login", "Login Sucessful")
+
+    conn.commit()
+
+    conn.close()
+
+
+
+# #function for checking the entered username and password
+# def signin():
+#     username= user.get()
+#     password= code.get()
+
+#     if username=='admin' and password=='root':
+#         print('welcome')
+#         screen=Toplevel(root)
+#         screen.title("App")
+#         screen.geometry('925x500+300+200')
+#         screen.config(bg="white")
+
+#         Label(screen,text='Welcome', bg='#fff', font=('Calibri(Body)', 50,'bold')).pack(expand=True)
+
+#         screen.mainloop()
+
+#     elif username!='admin' and password!='root':
+#         messagebox.showerror("Invalid","Invalid username and password")
+
+#     elif password!='root':
+#         messagebox.showerror("Invalid", "Invalid Password")
+
+#     elif username!='admin':
+#         messagebox.showerror("Invalid", "Invalid Username")
 
 #mainframe
 mainframe= Frame(root, bg='#fff')
@@ -81,7 +126,7 @@ code.bind('<FocusOut>', on_leave)
 
 
 #login button
-btn=Button(frame,width=25, pady=7, text='Log In', bg='#57a1f8',fg='white',border=0, command=signin)
+btn=Button(frame,width=25, pady=7, text='Log In', bg='#57a1f8',fg='white',border=0, command=submit)
 btn.grid(row=4, column=0)
 
 #text
@@ -93,5 +138,12 @@ sign_up=Button(frame, width=20,pady=7, text='Sign Up',border=0, bg='#57a1f8', cu
 sign_up.grid(row=6, column=0)
 
 ##
+
+# #commit change
+conn.commit()
+
+# #close connection
+conn.close()
+
 
 root.mainloop()
