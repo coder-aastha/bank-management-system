@@ -36,7 +36,7 @@ def submit():
     c=conn.cursor()
     
     #Insert into table
-    c.execute("INSERT INTO address VALUES (:username, :password)",{
+    c.execute("INSERT INTO address VALUES (:username,   :password)",{
         'username':user.get(),
         'password':code.get()
     })
@@ -51,31 +51,6 @@ def submit():
     conn.close()
 
 
-
-# #function for checking the entered username and password
-# def signin():
-#     username= user.get()
-#     password= code.get()
-
-#     if username=='admin' and password=='root':
-#         print('welcome')
-#         screen=Toplevel(root)
-#         screen.title("App")
-#         screen.geometry('925x500+300+200')
-#         screen.config(bg="white")
-
-#         Label(screen,text='Welcome', bg='#fff', font=('Calibri(Body)', 50,'bold')).pack(expand=True)
-
-#         screen.mainloop()
-
-#     elif username!='admin' and password!='root':
-#         messagebox.showerror("Invalid","Invalid username and password")
-
-#     elif password!='root':
-#         messagebox.showerror("Invalid", "Invalid Password")
-
-#     elif username!='admin':
-#         messagebox.showerror("Invalid", "Invalid Username")
 
 #mainframe
 mainframe= Frame(root, bg='#fff')
