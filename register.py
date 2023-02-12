@@ -1,12 +1,74 @@
 from tkinter import *
+from tkinter import messagebox
+import sqlite3
 
-window=Tk()
-window.title('REGISTER')
-window.geometry('925x500+300+200')
-window.configure(bg='#fff')
+root=Tk()
+root.title('REGISTER')
+root.geometry('925x500+300+200')
+root.configure(bg='#fff')
+
+
+
+# #Create a database or connect to
+# conn= sqlite3.connect('register_book.db')
+
+# #create cursor 
+# #cursor class is an instance using which you can 
+# #invoke methods that execute SQLite Statements
+# #fetch data from the result sets of the queries
+# c=conn.cursor()
+
+
+
+# # #Create table
+# c.execute("""CREATE TABLE address (
+#     first name text,
+#     last name text,
+#     father's name text,
+#     gender text,
+#     email varchar,
+#     contact int,
+#     username varchar
+#     password varchar
+# )""")
+# print("Table created successfully")
+
+
+# def submit():
+#     #create a databases or connect to one
+#     conn=sqlite3.connect('register_book.db')
+
+#     #create cursor
+#     c=conn.cursor()
+    
+#     #Insert into table
+#     c.execute("INSERT INTO address VALUES (:first name,   :last name, :father name, :gender, :email, :contact, :username, :password)",{
+#         'first name':user.get(),
+#         'last name':user1.get(),
+#         'father name':code.get(),
+#         'gender':code1.get(),
+#         'email':code2.get(),
+#         'contact':confirm.get(),
+#         'username':user2.get(),
+#         'password':user3.get()
+
+
+#     })
+
+
+
+    # #showinfo messagebox
+    # messagebox.showinfo("Sign up", "Sigh Up Sucessful")
+
+    # conn.commit()
+
+    # conn.close()
+
+
+
 
 #mainframe
-mainframe= Frame(window, bg="#fff")
+mainframe= Frame(root, bg="#fff")
 mainframe.grid(row=0,column=0)
 
 #subframe 1
@@ -120,35 +182,35 @@ confirm.bind('<FocusOut>', on_leave)
 
 #first name
 def on_enter(e):
-    user.delete(0, 'end')
+    user2.delete(0, 'end')
 
 def on_leave(e):
-    name=user.get()
+    name=user2.get()
     if name=='':
         user.insert(0,'Enter a Username')
 
 
-user=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-user.grid(row=8,column=0, pady=10, ipadx=5)
-user.insert(0,'Enter a Username')
-user.bind('<FocusIn>', on_enter)
-user.bind('<FocusOut>', on_leave)
+user2=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
+user2.grid(row=8,column=0, pady=10, ipadx=5)
+user2.insert(0,'Enter a Username')
+user2.bind('<FocusIn>', on_enter)
+user2.bind('<FocusOut>', on_leave)
 
 #first name
 def on_enter(e):
-    user.delete(0, 'end')
+    user3.delete(0, 'end')
 
 def on_leave(e):
-    name=user.get()
+    name=user3.get()
     if name=='':
         user.insert(0,'Enter Password')
 
 
-user=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-user.grid(row=9,column=0, pady=10, ipadx=5)
-user.insert(0,'Enter Password')
-user.bind('<FocusIn>', on_enter)
-user.bind('<FocusOut>', on_leave)
+user3=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
+user3.grid(row=9,column=0, pady=10, ipadx=5)
+user3.insert(0,'Enter Password')
+user3.bind('<FocusIn>', on_enter)
+user3.bind('<FocusOut>', on_leave)
 
 
 #button for sign in
@@ -163,4 +225,4 @@ acc.grid(row=12,column=0)
 login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
 login.grid(row=13,column=0)
 
-window.mainloop()
+root.mainloop()

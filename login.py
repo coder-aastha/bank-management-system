@@ -36,11 +36,10 @@ def submit():
     c=conn.cursor()
     
     #Insert into table
-    c.execute("INSERT INTO address VALUES (:username,   :password)",{
-        'username':user.get(),
+    c.execute("INSERT INTO address VALUES (:Username,   :password)",{
+        'Username':user.get(),
         'password':code.get()
     })
-
 
 
     #showinfo messagebox
@@ -48,6 +47,31 @@ def submit():
 
     conn.commit()
 
+    conn.close()
+
+
+def query():
+    #create a database or connect to one
+    conn=sqlite3.connect('login_book.db')
+
+    #Create cursor
+    c= conn.cursor()
+
+    #query of the database
+    c.execute("Select*, oid FROM address")
+
+    records=c.fetchall()
+    print(records)
+
+    #loop through the results
+    print_record=''
+    for record in records:
+        print_record+= str(record[0]) + ' '+ str(record[1])+ ' '+ '\t'+ str(record[6])+ "\n"
+
+    query_label= Label(root,text=print_record)
+    query_label.grid(row=8, column=0, columnspan=2)
+
+    conn.commit()
     conn.close()
 
 
