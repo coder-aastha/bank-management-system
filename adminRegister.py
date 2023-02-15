@@ -10,34 +10,34 @@ root.configure(bg='#fff')
 
 #   =========================== CREATING DB TABLE ========================
 
-try:
-    # Giving database name
-    main_database = sqlite3.connect('bank.db')
+# try:
+#     # Giving database name
+#     main_database = sqlite3.connect('bank.db')
 
-    # Initializing cursor
-    c = main_database.cursor()
+#     # Initializing cursor
+#     c = main_database.cursor()
 
-    # Creating customer table
-    c.execute("""CREATE TABLE authentication(
-                full_name text,
-                father_name text,
-                gender text,
-                email varchar,
-                contact varchar,
-                username text type UNIQUE,
-                password varchar,
-                account_type varchar,
-                role integer
-                )
-                """)
-    print('Table created for authentication.')
+#     # Creating customer table
+#     c.execute("""CREATE TABLE authentication(
+#                 full_name text,
+#                 father_name text,
+#                 gender text,
+#                 email varchar,
+#                 contact varchar,
+#                 username text type UNIQUE,
+#                 password varchar,
+#                 account_type varchar,
+#                 role integer
+#                 )
+#                 """)
+#     print('Table created for authentication.')
 
-    # Committing and closing the database.
-    main_database.commit()
-    main_database.close()
+#     # Committing and closing the database.
+#     main_database.commit()
+#     main_database.close()
 
-except sqlite3.Error as error:
-        print("Could not create table authentication.")
+# except sqlite3.Error as error:
+#         print("Could not create table authentication.")
 
 
 def registerAdmin():

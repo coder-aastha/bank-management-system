@@ -42,7 +42,7 @@ def withdraw():
     frame2 = Frame(root,bg="white",height=400,width=400)
     frame2.grid(row=1,column=3,rowspan=4,columnspan=1)
 
-    img = Image.open("withdraw.png")
+    img = Image.open("/image/bank.jpg")
     # img = img.resize((,600))     #resizing image
     bank_img = ImageTk.PhotoImage(img)
     global label_img
@@ -590,7 +590,7 @@ frame2.grid(row=1,column=8,rowspan=4,columnspan=4,pady=70,padx=40)
 
 #adding image
 #bank_image = ImageTk.PhotoImage(Image.open("Profile.png"))
-img = Image.open("bank.jpg")
+img = Image.open("/image/bank.jpg")
 img = img.resize((990,600))     #resizing image
 bank_img = ImageTk.PhotoImage(img)
 label_img = Label(frame2,image=bank_img).grid(row=0,column=0)
@@ -604,9 +604,6 @@ login_button.grid(row=1,column=1,pady=65)
 login_button.grid(row=1,column=1,pady=65)
 login_button.grid(row=1,column=1,pady=65)
 login_button.grid(row=1,column=1,pady=65)
-
-
-
 
 
 root.mainloop()
