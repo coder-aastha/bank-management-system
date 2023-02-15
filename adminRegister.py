@@ -8,56 +8,55 @@ root.geometry('925x500+300+200')
 root.configure(bg='#fff')
 
 
+#   =========================== CREATING DB TABLE ========================
+
+try:
+    # Giving database name
+    main_database = sqlite3.connect('bank.db')
+
+    # Initializing cursor
+    c = main_database.cursor()
+
+    # Creating customer table
+    c.execute("""CREATE TABLE authentication(
+                full_name text,
+                father_name text,
+                gender text,
+                email varchar,
+                contact varchar,
+                username text type UNIQUE,
+                password varchar,
+                account_type varchar,
+                role integer
+                )
+                """)
+    print('Table created for authentication.')
+
+    # Committing and closing the database.
+    main_database.commit()
+    main_database.close()
+
+except sqlite3.Error as error:
+        print("Could not create table authentication.")
 
 
-
-
-
-
-
-
-#Create a database or connect to
-conn= sqlite3.connect('register_book.db')
-
-#create cursor 
-#cursor class is an instance using which you can 
-#invoke methods that execute SQLite Statements
-#fetch data from the result sets of the queries
-c=conn.cursor()
-
-
-
-# # #Create table
-# c.execute("""CREATE TABLE address (
-#     first name text,
-#     last name text,
-#     father name text,
-#     gender text,
-#     email varchar,
-#     contact int,
-#     username varchar,
-#     password varchar
-# )""")
-# print("Table created successfully")
-
-
-def submit():
+def registerAdmin():
     #create a databases or connect to one
-    conn=sqlite3.connect('register_book.db')
+    conn=sqlite3.connect('bank.db')
 
     #create cursor
     c=conn.cursor()
     
     #Insert into table
-    c.execute("INSERT INTO address VALUES (:first name, :last name, :father name, :gender, :email, :contact, :username, :password)",{
-        'first name':user.get(),
-        'last name':user1.get(),
-        'father name':code.get(),
+    c.execute("INSERT INTO authentication(full_name,father_name,gender,email,contact,username,password,role) VALUES (:full_name, :father_name, :gender, :email, :contact,  :username, :password,:role )",{
+        'full_name':user.get(),
+        'father_name':code.get(),
         'gender':code1.get(),
         'email':code2.get(),
         'contact':confirm.get(),
         'username':user2.get(),
-        'password':user3.get()
+        'password':user3.get(),
+        'role': 1
 
 
     })
@@ -65,12 +64,11 @@ def submit():
 
 
     #showinfo messagebox
-    messagebox.showinfo("Sign up", "Sigh Up Sucessful")
+    # messagebox.showinfo("Sign up", "Sigh Up Sucessful")
+    print("Admin Registered Successfully")
 
     conn.commit()
-
     conn.close()
-
 
 
 
@@ -91,7 +89,7 @@ heading= Label(frame,text='Sign Up', fg='#57a1f8',bg='white',font=('Microsoft Ya
 heading.grid(row=0,column=0)
 
 
-#first name
+#full name
 def on_enter(e):
     user.delete(0, 'end')
 
@@ -108,22 +106,6 @@ user.bind('<FocusIn>', on_enter)
 user.bind('<FocusOut>', on_leave)
 
 
-# #Last name
-# def on_enter(e):
-#     user1.delete(0,'end')
-
-# def on_leave(e):
-#     name=user1.get()
-#     if name=='':
-#         user1.insert(0,'Last Name')
-
-# user1=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-# user1.grid(row=2,column=0 ,pady=10, ipadx=5)
-# user1.insert(0,'Last Name')
-# user1.bind('<FocusIn>', on_enter)
-# user1.bind('<FocusOut>', on_leave)
-
-
 #father's name
 def on_enter(e):
     code.delete(0,'end')
@@ -134,7 +116,7 @@ def on_leave(e):
         code.insert(0,"Father's Name")
 
 code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-code.grid(row=3,column=0, pady=10, ipadx=5)
+code.grid(row=2,column=0, pady=10, ipadx=5)
 code.insert(0,"Father's Name")
 code.bind('<FocusIn>', on_enter)
 code.bind('<FocusOut>', on_leave)
@@ -149,7 +131,7 @@ def on_leave(e):
         code1.insert(0,'Gender')
 
 code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-code1.grid(row=4,column=0, pady=10, ipadx=5)
+code1.grid(row=3,column=0, pady=10, ipadx=5)
 code1.insert(0,'Gender')
 code1.bind('<FocusIn>', on_enter)
 code1.bind('<FocusOut>', on_leave)
@@ -165,7 +147,7 @@ def on_leave(e):
         code2.insert(0,'Email')
 
 code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-code2.grid(row=5,column=0, pady=10, ipadx=5)
+code2.grid(row=4,column=0, pady=10, ipadx=5)
 code2.insert(0,'Email')
 code2.bind('<FocusIn>', on_enter)
 code2.bind('<FocusOut>', on_leave)
@@ -181,7 +163,7 @@ def on_leave(e):
         confirm.insert(0,'Mobile Number')
 
 confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-confirm.grid(row=6,column=0, pady=10, ipadx=5)
+confirm.grid(row=5,column=0, pady=10, ipadx=5)
 confirm.insert(0,'Mobile Number')
 confirm.bind('<FocusIn>', on_enter)
 confirm.bind('<FocusOut>', on_leave)
@@ -198,7 +180,7 @@ def on_leave(e):
 
 
 user2=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-user2.grid(row=7,column=0, pady=10, ipadx=5)
+user2.grid(row=6,column=0, pady=10, ipadx=5)
 user2.insert(0,'Enter a Username')
 user2.bind('<FocusIn>', on_enter)
 user2.bind('<FocusOut>', on_leave)
@@ -214,32 +196,30 @@ def on_leave(e):
 
 
 user3=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-user3.grid(row=8,column=0, pady=10, ipadx=5)
+user3.grid(row=7,column=0, pady=10, ipadx=5)
 user3.insert(0,'Enter Password')
 user3.bind('<FocusIn>', on_enter)
 user3.bind('<FocusOut>', on_leave)
 
 ####
 confirm1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-# confirm1.grid(row=9,column=0, pady=10, ipadx=5)
+# confirm1.grid(row=8,column=0, pady=10, ipadx=5)
 confirm1.insert(0,'1')
 confirm1.config(state= "disabled")
 
 
 #button for sign in
-signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white', command=submit)
-signin.grid(row=12,column=0)
+signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white', command=registerAdmin)
+signin.grid(row=10,column=0)
 
 #label for already have an account?
 acc=Label(frame,text="Already have an account? ", fg='#2c3e4c', bg='white', font=('Microsoft YaHei UI Light', 9))
-acc.grid(row=13,column=0)
+acc.grid(row=11,column=0)
 
 #button for login
 login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
-login.grid(row=14,column=0)
+login.grid(row=12,column=0)
 
 
-conn.commit()
-conn.close()
 
 root.mainloop()
