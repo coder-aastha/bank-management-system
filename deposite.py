@@ -11,28 +11,28 @@ root["background"]="light green"
 
 #   =========================== CREATING DB TABLE ========================
 
-# try:
-#     # Giving database name
-#     main_database = sqlite3.connect('bank.db')
+try:
+    # Giving database name
+    main_database = sqlite3.connect('bank.db')
 
 #     # Initializing cursor
-#     c = main_dat abase.cursor()
+#     c = main_database.cursor()
 
-#     # Creating customer table
-#     c.execute("""CREATE TABLE customer(
-#                 name text,
-#                 account_number integer,
-#                 amount integer
-#     )
-#     """)
-#     print('Table created for Customer.')
+    # Creating customer table
+    c.execute("""CREATE TABLE customer(
+                name text,
+                account_number integer,
+                amount integer
+    )
+    """)
+    print('Table created for Customer.')
 
-#     # Committing and closing the database.
-#     main_database.commit()
-#     main_database.close()
+    # Committing and closing the database.
+    main_database.commit()
+    main_database.close()
 
 # except sqlite3.Error as error:
-#         print("Could not create DB customer") 
+#         print("Could not create DB customer")
 
 
 def depositeAmount():
