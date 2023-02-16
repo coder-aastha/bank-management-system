@@ -1,4 +1,5 @@
 from tkinter import*
+import sqlite3
 ws = Tk()
 ws.geometry("800x450")
 ws.resizable(False,False)
@@ -19,5 +20,26 @@ register_Delete = Entry(frame, font=f)
 register_ID.grid(row=0, column=1, pady=10, padx=20)
 Delete_btn.grid(row=1, column=1, pady=10, padx=20)
 frame.grid()
+
+
+#   =========================== CREATING DB TABLE ========================#
+try:
+
+    #  Giving .database. name#     
+     main_database = sqlite3.connect('bank.db')
+     c = main_database.cursor()
+
+    #  Creating.Delete. table    
+     c.execute("""CREATE TABLE DELETE(
+      ID INTEGER) """)
+      
+     print('Table created for DELETE.')
+    #  Committing and closing the database. 
+     main_database.commit()
+     main_database.close()
+except sqlite3.Error as error:
+    print("Could not create DB customer")
+
+
 ws.mainloop()
 
