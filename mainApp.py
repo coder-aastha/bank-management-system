@@ -356,6 +356,7 @@ def customerLoginScreen():
     root.title('LOGIN')
     root.geometry('925x500+300+200')
     root.configure(bg='#fff')
+    root.resizable(False,False)
 
         #mainframe
     mainframe = Frame(root, bg='#fff')
@@ -487,6 +488,7 @@ def customerRegisterScreen():
     root.title('REGISTER')
     root.geometry('925x500+300+200')
     root.configure(bg='#fff')
+    root.resizable(False,False)
     global user
     global user2
     global user3
