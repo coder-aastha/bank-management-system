@@ -12,7 +12,7 @@ It is very easy to use.
 <p>The tools used while making this project are shown below.</p>
 
 <br>
-<h4>Tools</h3>🧰
+<h4>Tools🧰</h3>
 <p>1. VS Code as a editor for writing code
 <p>2. Git as a version control
  <br>
