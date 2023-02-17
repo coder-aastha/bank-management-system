@@ -1,16 +1,16 @@
 from tkinter import*
 import sqlite3
-ws = Tk()
-ws.geometry("800x450")
-ws.resizable(False,False)
-ws["background"] = "skyblue"
-ws.title("DELETE")
+root = Tk()
+root.geometry("1000x600")
+# ws.resizable(False,False)
+root["background"] = "skyblue"
+root.title("DELETE")
 f = ('Times', 14)
 
-frame = Frame(ws,bd=2,bg='lightpink',relief=SOLID, padx=35,pady=15)
-frame.grid(row=1, column=1,padx=400,pady=50,ipadx=20,ipady=30)
+frame = Frame(root,bd=2,bg='lightpink',relief=SOLID, padx=5,pady=20,height=200,width=200)
+frame.grid(row=1, column=1,padx=400,pady=95,ipadx=20,ipady=30)
 
-Label(frame,text="Enter ID",bg='grey',font=f).grid(row=0, column=0, sticky=W, pady=10)
+Label(frame,text="Enter ID",bg='grey',font=f).grid(row=0, column=0, sticky=W, pady=50,padx=3)
 
 Delete_btn = Button(frame, width=15,  text='DELETE', bg='grey', font=f, relief=SOLID,cursor='hand2',command=None)
 
@@ -31,7 +31,7 @@ try:
 
     #  Creating.Delete. table    
      c.execute("""CREATE TABLE DELETE(
-      ID INTEGER) """)
+    Enter_ID INTEGER) """)
       
      print('Table created for DELETE.')
     #  Committing and closing the database. 
@@ -41,5 +41,5 @@ except sqlite3.Error as error:
     print("Could not create DB customer")
 
 
-ws.mainloop()
+root.mainloop()
 

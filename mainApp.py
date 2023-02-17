@@ -508,15 +508,41 @@ def deposit():
     Deposit_btn.grid(row=4,column=1)
 
 
+
+
+
 def balance_enquiry():
-    balance_enquiry = Toplevel()
-    balance_enquiry.title("Balance Enquiry")
-    balance_enquiry.geometry("700x200")
-    balance_enquiry["background"] = "pink"
-    balance_enquiry_label = Label(balance_enquiry,text="Your current balance is Rs. .......",font=("Code New Roman",24,"bold"),bg="pink")
-    balance_enquiry_label.grid(row=3,column=2,pady=70,padx=20)
-    balance_enquiry_button = Button(customer_features_frame,text="Balance Enquiry",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=balance_enquiry)
-    balance_enquiry_button.grid(row=2,column=0,pady=2)
+    root = Toplevel()
+    root.title("Balance Enquiry")
+    root.geometry("700x200")
+    root["background"] = "#86E5FF"
+    balance_enquriy_label = Label(root,text="Your current balance is Rs. .......",font=("Code New Roman",24,"bold"),bg="#86E5FF")
+    balance_enquriy_label.grid(row=3,column=2,pady=70,padx=20)
+
+
+    
+
+
+def delete():
+    root = Toplevel()
+    root.geometry("1000x600")
+    root["background"] = "skyblue"
+    root.title("DELETE")
+    f = ('Times', 14)
+
+    frame = Frame(root,bd=2,bg='lightpink',relief=SOLID, padx=5,pady=20,height=200,width=200)
+    frame.grid(row=1, column=1,padx=400,pady=95,ipadx=20,ipady=30)
+
+    Label(frame,text="Enter_acc_ID",bg='grey',font=f).grid(row=0, column=0, sticky=W, pady=50,padx=3)
+
+    Delete_btn = Button(frame, width=15,  text='DELETE', bg='grey', font=f, relief=SOLID,cursor='hand2',command=None)
+
+    register_ID = Entry(frame, font=f)
+    register_Delete = Entry(frame, font=f)
+
+    register_ID.grid(row=0, column=1, pady=10, padx=20)
+    Delete_btn.grid(row=1, column=1, pady=10, padx=20)
+    frame.grid()
 
 
 # ================================================================================================
@@ -848,7 +874,7 @@ def adminDashboard():
     open_acc_button.grid(row=0,column=0)
     cus_details_button = Button(admin_features_frame,text="Showing Customer Details",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
     cus_details_button.grid(row=1,column=0,pady=20)
-    closing_acc_button = Button(admin_features_frame,text="Closing Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
+    closing_acc_button = Button(admin_features_frame,text="Closing Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=delete)
     closing_acc_button.grid(row=2,column=0,pady=2)
 
     admin_image_frame = Frame(admin_page,bg="#86E5FF",height=700,width=600)

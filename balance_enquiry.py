@@ -1,5 +1,5 @@
 from tkinter import *
-import tkinter as tk
+import tkinter as Toplevel
 import sqlite3
 
 # Create a Tkinter window
@@ -11,13 +11,13 @@ balance_enquriy_label = Label(root,text="Your current balance is Rs. .......",fo
 balance_enquriy_label.grid(row=3,column=2,pady=70,padx=20)
 
 # # Create a database connection
-# conn = sqlite3.connect('balance_enquiry.db')
+conn = sqlite3.connect('bank.db')
 
 #   =========================== CREATING DB TABLE ========================#
 try:
 
     #  Giving .database. name#     
-     main_database = sqlite3.connect('balance_enquiry.db')
+     main_database = sqlite3.connect('bank.db')
      c = main_database.cursor()
 
     #  Creating.Delete(
