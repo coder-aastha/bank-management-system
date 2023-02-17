@@ -7,6 +7,7 @@ root.geometry("1944x1080")
 root["background"] = "#5800FF"
 root.title("Bank Management System")
 
+
 # ================================================================================================
 # ============================== CREATING DATABASE FOR BANK APP ==================================
 # ================================================================================================
@@ -14,12 +15,12 @@ root.title("Bank Management System")
 
 # =========================== CREATING TABLE FOR AUTHENTICATION ==================================
 
-try:
-    # Giving database name
-    main_database = sqlite3.connect('bank.db')
+# try:
+#     # Giving database name
+#     main_database = sqlite3.connect('bank.db')
 
-    # Initializing cursor
-    c = main_database.cursor()
+#     # Initializing cursor
+#     c = main_database.cursor()
 
 #     # Creating customer table
 #     c.execute("""CREATE TABLE authentication(
@@ -36,12 +37,12 @@ try:
 #                 """)
 #     print('Table created for authentication.')
 
-    # Committing and closing the database.
-    main_database.commit()
-    main_database.close()
+#     # Committing and closing the database.
+#     main_database.commit()
+#     main_database.close()
 
-except sqlite3.Error as error:
-        print("Could not create table authentication.")
+# except sqlite3.Error as error:
+#         print("Could not create table authentication.")
 
 
 #=============================================================================================
@@ -470,6 +471,32 @@ def deposit():
     root=Toplevel()
     root.title("Deposite money")
     root["background"]="light green"
+    global name
+
+    def depositeAmount():
+        try:
+            main_database = sqlite3.connect('bank.db')
+            print("DB Connected")
+            c = main_database.cursor()
+            # Adding to database
+            c.execute(
+                "INSERT INTO authentication VALUES(:name, :account_number,:amount)",
+                {
+                    'name': name.get(),
+                    'account_number': account_num.get(),
+                    'amount': amount_to_deposit.get()
+                })
+            messagebox.showinfo('sucess','Deposited sucessfully')
+            
+            main_database.commit()
+            main_database.close()
+            name.delete(0,END)
+            account_num.delete(0,END)
+            amount_to_deposit.delete(0,END)
+
+        except sqlite3.Error as error:
+            print("Failed to despoite amount")
+
 
     welcome=Label(root, text="Enter customer details to Deposit ", font=("Verdana Bold", 12),bg="oldlace", fg="blue2")
     welcome.grid(row=0,column=0)
@@ -507,6 +534,9 @@ def deposit():
     Deposit_btn=Button(root,text="Deposit", fg="white", bg="blue2",font=("Verdana Bold", 14))
     Deposit_btn.grid(row=4,column=1)
 
+    messagebox.showinfo("Sucess","Deposited sucessfull")
+    
+
 
 def balance_enquiry():
     balance_enquiry = Toplevel()
@@ -517,6 +547,59 @@ def balance_enquiry():
     balance_enquiry_label.grid(row=3,column=2,pady=70,padx=20)
     balance_enquiry_button = Button(customer_features_frame,text="Balance Enquiry",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=balance_enquiry)
     balance_enquiry_button.grid(row=2,column=0,pady=2)
+
+
+
+def showing_customer_details():
+    root=Toplevel()
+    root.title("Customer details")
+
+    style=root.Style()
+
+    style.theme_use('default')
+
+    style.configure("treeview",
+        background="#D3D3D3",
+        foreground="black",
+        rowheight=25,
+        fieldbackground="#D3D3D3")
+
+    style.map('Treeview',
+        background=[('selected','#347083')])
+
+    tree_frame= Frame(root)
+    tree_frame.pack(pady=10)
+
+    tree_scroll= Scrollbar(tree_frame)
+    tree_scroll.pack(side=RIGHT,fill=Y)
+
+    my_tree=root.Treeview(tree_frame,yscrollcommand=tree_scroll.set,selectmode="extended")
+    my_tree.pack()
+
+    tree_scroll.config(command=my_tree.yview)
+
+    #Defining columns
+    my_tree['columns']=("Full Name","Account Number","Deposit","Withdraw","Address","Email")
+
+    #Formating colums
+    my_tree.column("#0",width=0,stretch=NO)
+    my_tree.column("Full Name",anchor=W,width=140)
+    my_tree.column("Account Number",anchor=W,width=140)
+    my_tree.column("Deposit",anchor=CENTER,width=140)
+    my_tree.column("Withdraw",anchor=CENTER,width=140)
+    my_tree.column("Address",anchor=CENTER,width=140)
+    my_tree.column("Email",anchor=CENTER,width=140)
+
+
+
+    #creating headings
+    my_tree.heading("#0",text="",anchor=W)
+    my_tree.heading("Full Name",text="Full Name",anchor=W)
+    my_tree.heading("Account Number",text="Account Number",anchor=W)
+    my_tree.heading("Deposit",text="Deposit",anchor=CENTER)
+    my_tree.heading("Withdraw",text="Withdraw",anchor=CENTER)
+    my_tree.heading("Address",text="Address",anchor=CENTER)
+    my_tree.heading("Email",text="Email",anchor=CENTER)
 
 
 # ================================================================================================
@@ -846,7 +929,7 @@ def adminDashboard():
     admin_features_frame.grid(row=0,column=0,padx=20,pady=20)
     open_acc_button = Button(admin_features_frame,text="Opening Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24, command=opening_customer_account)
     open_acc_button.grid(row=0,column=0)
-    cus_details_button = Button(admin_features_frame,text="Showing Customer Details",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
+    cus_details_button = Button(admin_features_frame,text="Showing Customer Details",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=showing_customer_details)
     cus_details_button.grid(row=1,column=0,pady=20)
     closing_acc_button = Button(admin_features_frame,text="Closing Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
     closing_acc_button.grid(row=2,column=0,pady=2)
