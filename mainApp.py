@@ -7,7 +7,6 @@ root.geometry("1944x1080")
 root["background"] = "#5800FF"
 root.title("Bank Management System")
 
-
 # ================================================================================================
 # ============================== CREATING DATABASE FOR BANK APP ==================================
 # ================================================================================================
@@ -22,16 +21,19 @@ root.title("Bank Management System")
 #     # Initializing cursor
 #     c = main_database.cursor()
 
+#     print(c)
+
 #     # Creating customer table
 #     c.execute("""CREATE TABLE authentication(
 #                 full_name text,
 #                 father_name text,
+#                 account_no varchar,
 #                 gender text,
-#                 email varchar,
 #                 contact varchar,
 #                 username text type UNIQUE,
 #                 password varchar,
 #                 account_type varchar,
+#                 balance integer,
 #                 role integer
 #                 )
 #                 """)
@@ -43,357 +45,18 @@ root.title("Bank Management System")
 
 # except sqlite3.Error as error:
 #         print("Could not create table authentication.")
+# ================================================================================================
+# ============================== CREATING DATABASE FOR BANK APP ==================================
+# ================================================================================================
+
+
+# =========================== CREATING TABLE FOR AUTHENTICATION ==================================
 
 
 #=============================================================================================
-#   =========================== END CREATING TABLE FOR AUTHENTICATION ========================
+#============================== END CREATING TABLE FOR AUTHENTICATION ========================
 #=============================================================================================
 
-
-    # def submit():
-    #     #create a databases or connect to one
-    #     conn=sqlite3.connect('customer_book.db')
-
-    #     #create cursor
-    #     c=conn.cursor()
-        
-    #     #Insert into table
-    #     c.execute("INSERT INTO customer_register VALUES (:full_name, :father_name, :gender, :account_no, :contact, :account_type, :username, :password)",{
-    #         'full_name':user.get(),
-    #         'father_name':user1.get(),
-    #         'gender':code.get(),
-    #         'account_no':code1.get(),
-    #         'contact':code2.get(),
-    #         'account_type':confirm.get(),
-    #         'username':user2.get(),
-    #         'password':user3.get()
-
-    #     })
-
-    #     #showinfo messagebox
-    #     messagebox.showinfo("Sign up", "Sigh Up Sucessful")
-
-    #     conn.commit()
-    #     conn.close()
-
-
-
-def opening_customer_account():
-    root=Toplevel()
-    root.title("CUSTOMER REGISTER - BANKING APP")
-    root.geometry('925x500+300+200')
-    root.configure(bg='#fff')
-
-    #mainframe
-    mainframe= Frame(root, bg="#fff")
-    mainframe.grid(row=0,column=0)
-
-    #subframe 1
-    logo=Frame(mainframe,width=450,height=500,bg='#3cdfff')
-    logo.grid(row=0,column=0)
-
-    #subframe 2
-    frame=Frame(mainframe,width=600,height=500,padx=180, bg='#fff')
-    frame.grid(row=0, column=1)
-
-    #the 
-    heading= Label(frame,text='Sign Up', fg='#57a1f8',bg='white',font=('Microsoft YaHei UI Light', 20, 'bold'))
-    heading.grid(row=0,column=0)
-
-
-    #first name
-    def on_enter(e):
-        user.delete(0, 'end')
-
-    def on_leave(e):
-        name=user.get()
-        if name=='':
-            user.insert(0,'Enter Full Name')
-
-
-    user=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user.grid(row=1,column=0, pady=10, ipadx=5)
-    user.insert(0,'Enter Full Name')
-    user.bind('<FocusIn>', on_enter)
-    user.bind('<FocusOut>', on_leave)
-
-
-    #Last name
-    def on_enter(e):
-        user1.delete(0,'end')
-
-    def on_leave(e):
-        name=user1.get()
-        if name=='':
-            user1.insert(0,"Father's Name")
-
-    user1=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user1.grid(row=2,column=0 ,pady=10, ipadx=5)
-    user1.insert(0,"Father's Name")
-    user1.bind('<FocusIn>', on_enter)
-    user1.bind('<FocusOut>', on_leave)
-
-
-    #father's name
-    def on_enter(e):
-        code.delete(0,'end')
-
-    def on_leave(e):
-        name=code.get()
-        if name=="":
-            code.insert(0,"Gender")
-
-    code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code.grid(row=3,column=0, pady=10, ipadx=5)
-    code.insert(0,"Gender")
-    code.bind('<FocusIn>', on_enter)
-    code.bind('<FocusOut>', on_leave)
-
-    #gender
-    def on_enter(e):
-        code1.delete(0,'end')
-
-    def on_leave(e):
-        name=code1.get()
-        if name=='':
-            code1.insert(0,'Account No')
-
-    code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code1.grid(row=4,column=0, pady=10, ipadx=5)
-    code1.insert(0,'Account No')
-    code1.bind('<FocusIn>', on_enter)
-    code1.bind('<FocusOut>', on_leave)
-
-
-    #email
-    def on_enter(e):
-        code2.delete(0,'end')
-
-    def on_leave(e):
-        name=code2.get()
-        if name=='':
-            code2.insert(0,'Mobile Number')
-
-    code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code2.grid(row=6,column=0, pady=10, ipadx=5)
-    code2.insert(0,'Mobile Number')
-    code2.bind('<FocusIn>', on_enter)
-    code2.bind('<FocusOut>', on_leave)
-
-
-
-    #account type
-    confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    confirm.grid(row=7,column=0, pady=10, ipadx=5)
-    confirm.insert(0,'Savings Account')
-    confirm.config(state= "disabled")
-
-    # def disable_entry():
-
-    #Username Entry
-    def on_enter(e):
-        user2.delete(0, 'end')
-
-    def on_leave(e):
-        name=user2.get()
-        if name=='':
-            user2.insert(0,'Enter a Username')
-
-
-    user2=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user2.grid(row=8,column=0, pady=10, ipadx=5)
-    user2.insert(0,'Enter a Username')
-    user2.bind('<FocusIn>', on_enter)
-    user2.bind('<FocusOut>', on_leave)
-
-
-    #Password entry 
-    def on_enter(e):
-        user3.delete(0, 'end')
-
-    def on_leave(e):
-        name=user3.get()
-        if name=='':
-            user3.insert(0,'Enter Password')
-
-
-    user3=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user3.grid(row=9,column=0, pady=10, ipadx=5)
-    user3.insert(0,'Enter Password')
-    user3.bind('<FocusIn>', on_enter)
-    user3.bind('<FocusOut>', on_leave)
-
-
-    #button for sign in
-    signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
-    signin.grid(row=11,column=0)
-
-    # #label for already have an account?
-    # acc=Label(frame,text="Already have an account? ", fg='#2c3e4c', bg='white', font=('Microsoft YaHei UI Light', 9))
-    # acc.grid(row=12,column=0)
-
-    # #button for login
-    # login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
-    # login.grid(row=13,column=0)
-
-
-    # conn.commit()
-    # conn.close()
-    #mainframe
-    mainframe= Frame(root, bg="#fff")
-    mainframe.grid(row=0,column=0)
-
-    #subframe 1
-    logo=Frame(mainframe,width=450,height=500,bg='#3cdfff')
-    logo.grid(row=0,column=0)
-
-    #subframe 2
-    frame=Frame(mainframe,width=600,height=500,padx=180, bg='#fff')
-    frame.grid(row=0, column=1)
-
-    #the 
-    heading= Label(frame,text='Sign Up', fg='#57a1f8',bg='white',font=('Microsoft YaHei UI Light', 20, 'bold'))
-    heading.grid(row=0,column=0)
-
-
-    #first name
-    def on_enter(e):
-        user.delete(0, 'end')
-
-    def on_leave(e):
-        name=user.get()
-        if name=='':
-            user.insert(0,'Enter Full Name')
-
-
-    user=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user.grid(row=1,column=0, pady=10, ipadx=5)
-    user.insert(0,'Enter Full Name')
-    user.bind('<FocusIn>', on_enter)
-    user.bind('<FocusOut>', on_leave)
-
-
-    #Last name
-    def on_enter(e):
-        user1.delete(0,'end')
-
-    def on_leave(e):
-        name=user1.get()
-        if name=='':
-            user1.insert(0,"Father's Name")
-
-    user1=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user1.grid(row=2,column=0 ,pady=10, ipadx=5)
-    user1.insert(0,"Father's Name")
-    user1.bind('<FocusIn>', on_enter)
-    user1.bind('<FocusOut>', on_leave)
-
-
-    #father's name
-    def on_enter(e):
-        code.delete(0,'end')
-
-    def on_leave(e):
-        name=code.get()
-        if name=="":
-            code.insert(0,"Gender")
-
-    code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code.grid(row=3,column=0, pady=10, ipadx=5)
-    code.insert(0,"Gender")
-    code.bind('<FocusIn>', on_enter)
-    code.bind('<FocusOut>', on_leave)
-
-    #gender
-    def on_enter(e):
-        code1.delete(0,'end')
-
-    def on_leave(e):
-        name=code1.get()
-        if name=='':
-            code1.insert(0,'Account No')
-
-    code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code1.grid(row=4,column=0, pady=10, ipadx=5)
-    code1.insert(0,'Account No')
-    code1.bind('<FocusIn>', on_enter)
-    code1.bind('<FocusOut>', on_leave)
-
-
-    #email
-    def on_enter(e):
-        code2.delete(0,'end')
-
-    def on_leave(e):
-        name=code2.get()
-        if name=='':
-            code2.insert(0,'Mobile Number')
-
-    code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code2.grid(row=6,column=0, pady=10, ipadx=5)
-    code2.insert(0,'Mobile Number')
-    code2.bind('<FocusIn>', on_enter)
-    code2.bind('<FocusOut>', on_leave)
-
-
-
-    #account type
-    confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    confirm.grid(row=7,column=0, pady=10, ipadx=5)
-    confirm.insert(0,'Savings Account')
-    confirm.config(state= "disabled")
-
-    # def disable_entry():
-
-    #Username Entry
-    def on_enter(e):
-        user2.delete(0, 'end')
-
-    def on_leave(e):
-        name=user2.get()
-        if name=='':
-            user2.insert(0,'Enter a Username')
-
-
-    user2=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user2.grid(row=8,column=0, pady=10, ipadx=5)
-    user2.insert(0,'Enter a Username')
-    user2.bind('<FocusIn>', on_enter)
-    user2.bind('<FocusOut>', on_leave)
-
-
-    #Password entry 
-    def on_enter(e):
-        user3.delete(0, 'end')
-
-    def on_leave(e):
-        name=user3.get()
-        if name=='':
-            user3.insert(0,'Enter Password')
-
-
-    user3=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user3.grid(row=9,column=0, pady=10, ipadx=5)
-    user3.insert(0,'Enter Password')
-    user3.bind('<FocusIn>', on_enter)
-    user3.bind('<FocusOut>', on_leave)
-
-
-    # #button for sign in
-    # signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
-    # signin.grid(row=11,column=0)
-
-    # #label for already have an account?
-    # acc=Label(frame,text="Already have an account? ", fg='#2c3e4c', bg='white', font=('Microsoft YaHei UI Light', 9))
-    # acc.grid(row=12,column=0)
-
-    #button for login
-    login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
-    login.grid(row=13,column=0)
-
-
-    # conn.commit()
-    # conn.close()
 
 #=============================================================================================
 # =======================END OF CREATING REGISTRATION FORM FOR CUSTOMER=======================
@@ -722,12 +385,16 @@ def customerLoginQuery():
 # ===============================Customer Register Screen | Query ================================
 # ================================================================================================
 def customerRegisterQuery():
-    username = user2.get()
     global password
+    global username
+
+    username = user2.get()
     password = user3.get()
     print(username)
+    print(password)
 
-    if len(username) == 0 :
+
+    if len(username) == 0 or len(password) == 0:
         messagebox.showerror("Error", "Fields cannot be empty")
     else:
         try:
@@ -738,11 +405,11 @@ def customerRegisterQuery():
             c=conn.cursor()
             
             #Insert into table
-            c.execute("INSERT INTO authentication(full_name,father_name,gender,email,contact,username,password,role) VALUES (:full_name, :father_name, :gender, :email, :contact,  :username, :password)",{
+            c.execute("INSERT INTO authentication(full_name,father_name,gender,account_no,contact,username,password) VALUES (:full_name, :father_name, :gender, :account_no, :contact,  :username, :password)",{
                 'full_name':user.get(),
                 'father_name':code.get(),
                 'gender':code1.get(),
-                'email':code2.get(),
+                'account_no':code2.get(),
                 'contact':confirm.get(),
                 'username':user2.get(),
                 'password':user3.get(),
@@ -752,13 +419,15 @@ def customerRegisterQuery():
 
             #showinfo messagebox
             print("Customer Registered Successfully")
-            messagebox.showinfo("Sign up", "Sigh Up Sucessful")
+            messagebox.showinfo("Customer account creation", "Customer account created successfully")
 
             conn.commit()
             conn.close()
             
         except sqlite3.Error as error:
-                print("Could not create table authentication.")
+                print("Could not create an account for customer.")
+                messagebox.showinfo("Error", "Something went wrong.")
+
 
 
 def customerRegisterScreen():
@@ -770,14 +439,13 @@ def customerRegisterScreen():
     global code2
     global confirm
     global confirm1
-
-    customerRegister=Toplevel()
-    customerRegister.title('CUSTOMER REGISTER - BANKING APP')
-    customerRegister.geometry('925x500+300+200')
-    customerRegister.configure(bg='#fff')
+    root=Toplevel()
+    root.title("CUSTOMER REGISTER - BANKING APP")
+    root.geometry('925x500+300+200')
+    root.configure(bg='#fff')
 
     #mainframe
-    mainframe= Frame(customerRegister, bg="#fff")
+    mainframe= Frame(root, bg="#fff")
     mainframe.grid(row=0,column=0)
 
     #subframe 1
@@ -792,6 +460,7 @@ def customerRegisterScreen():
     heading= Label(frame,text='Sign Up', fg='#57a1f8',bg='white',font=('Microsoft YaHei UI Light', 20, 'bold'))
     heading.grid(row=0,column=0)
 
+
     #full name
     def on_enter(e):
         user.delete(0, 'end')
@@ -799,80 +468,89 @@ def customerRegisterScreen():
     def on_leave(e):
         name=user.get()
         if name=='':
-            user.insert(0,'Full Name')
+            user.insert(0,'Enter Full Name')
 
 
     user=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
     user.grid(row=1,column=0, pady=10, ipadx=5)
-    user.insert(0,'Full Name')
+    user.insert(0,'Enter Full Name')
     user.bind('<FocusIn>', on_enter)
     user.bind('<FocusOut>', on_leave)
 
 
-    #father's name
+    #Father's name
+    def on_enter(e):
+        user1.delete(0,'end')
+
+    def on_leave(e):
+        name=user1.get()
+        if name=='':
+            user1.insert(0,"Father's Name")
+
+    user1=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
+    user1.grid(row=2,column=0 ,pady=10, ipadx=5)
+    user1.insert(0,"Father's Name")
+    user1.bind('<FocusIn>', on_enter)
+    user1.bind('<FocusOut>', on_leave)
+
+
+    #Gender
     def on_enter(e):
         code.delete(0,'end')
 
     def on_leave(e):
         name=code.get()
         if name=="":
-            code.insert(0,"Father's Name")
+            code.insert(0,"Gender")
 
     code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code.grid(row=2,column=0, pady=10, ipadx=5)
-    code.insert(0,"Father's Name")
+    code.grid(row=3,column=0, pady=10, ipadx=5)
+    code.insert(0,"Gender")
     code.bind('<FocusIn>', on_enter)
     code.bind('<FocusOut>', on_leave)
 
-    #gender
+    #Account No
     def on_enter(e):
         code1.delete(0,'end')
 
     def on_leave(e):
         name=code1.get()
         if name=='':
-            code1.insert(0,'Gender')
+            code1.insert(0,'Account No')
 
     code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code1.grid(row=3,column=0, pady=10, ipadx=5)
-    code1.insert(0,'Gender')
+    code1.grid(row=4,column=0, pady=10, ipadx=5)
+    code1.insert(0,'Account No')
     code1.bind('<FocusIn>', on_enter)
     code1.bind('<FocusOut>', on_leave)
 
 
-    #email
+    #Mobile Number
     def on_enter(e):
         code2.delete(0,'end')
 
     def on_leave(e):
         name=code2.get()
         if name=='':
-            code2.insert(0,'Email')
+            code2.insert(0,'Mobile Number')
 
     code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    code2.grid(row=4,column=0, pady=10, ipadx=5)
-    code2.insert(0,'Email')
+    code2.grid(row=6,column=0, pady=10, ipadx=5)
+    code2.insert(0,'Mobile Number')
     code2.bind('<FocusIn>', on_enter)
     code2.bind('<FocusOut>', on_leave)
 
 
-    #mobile number
-    def on_enter(e):
-        confirm.delete(0,'end')
 
-    def on_leave(e):
-        name=confirm.get()
-        if name=='':
-            confirm.insert(0,'Mobile Number')
-
+    #Savings Account
     confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    confirm.grid(row=5,column=0, pady=10, ipadx=5)
-    confirm.insert(0,'Mobile Number')
-    confirm.bind('<FocusIn>', on_enter)
-    confirm.bind('<FocusOut>', on_leave)
+    confirm.grid(row=7,column=0, pady=10, ipadx=5)
+    confirm.insert(0,'Savings Account')
+    confirm.config(state= "disabled")
 
+    # def disable_entry():
 
-    #first name
+    #Username Entry
     def on_enter(e):
         user2.delete(0, 'end')
 
@@ -883,12 +561,12 @@ def customerRegisterScreen():
 
 
     user2=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user2.grid(row=6,column=0, pady=10, ipadx=5)
-    # user2.insert(0,'Enter a Username')
+    user2.grid(row=8,column=0, pady=10, ipadx=5)
     user2.bind('<FocusIn>', on_enter)
     user2.bind('<FocusOut>', on_leave)
 
-    #first name
+
+    #Password entry 
     def on_enter(e):
         user3.delete(0, 'end')
 
@@ -899,21 +577,16 @@ def customerRegisterScreen():
 
 
     user3=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
-    user3.grid(row=7,column=0, pady=10, ipadx=5)
+    user3.grid(row=9,column=0, pady=10, ipadx=5)
     user3.bind('<FocusIn>', on_enter)
     user3.bind('<FocusOut>', on_leave)
 
-    ####
-    confirm1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
-    confirm1.grid(row=8,column=0, pady=10, ipadx=5)
-    confirm1.insert(0,'1')
-    confirm1.config(state= "disabled")
 
-    #button for login
-    login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white', command=customerLoginScreen)
-    login.grid(row=12,column=0)
-
-    customerRegister.mainloop()
+    #button for sign in
+    signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white',command=customerRegisterQuery)
+    signin.grid(row=11,column=0)
+    
+    # customerRegister.mainloop()
     # customerRegister.destroy()
     # customerLoginScreen
 
@@ -927,7 +600,7 @@ def adminDashboard():
     admin_page["background"] = "#86E5FF"
     admin_features_frame = Frame(admin_page,bg="#86E5FF",height=750,width=400)
     admin_features_frame.grid(row=0,column=0,padx=20,pady=20)
-    open_acc_button = Button(admin_features_frame,text="Opening Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24, command=opening_customer_account)
+    open_acc_button = Button(admin_features_frame,text="Opening Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24, command=customerRegisterScreen)
     open_acc_button.grid(row=0,column=0)
     cus_details_button = Button(admin_features_frame,text="Showing Customer Details",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=showing_customer_details)
     cus_details_button.grid(row=1,column=0,pady=20)
@@ -1156,11 +829,11 @@ def adminRegisterScreen():
     def on_leave(e):
         name=code2.get()
         if name=='':
-            code2.insert(0,'Email')
+            code2.insert(0,'Account No')
 
     code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
     code2.grid(row=4,column=0, pady=10, ipadx=5)
-    code2.insert(0,'Email')
+    code2.insert(0,'Account No')
     code2.bind('<FocusIn>', on_enter)
     code2.bind('<FocusOut>', on_leave)
 
@@ -1256,11 +929,11 @@ def adminRegisterQuery():
             c=conn.cursor()
             
             #Insert into table
-            c.execute("INSERT INTO authentication(full_name,father_name,gender,email,contact,username,password,role) VALUES (:full_name, :father_name, :gender, :email, :contact,  :username, :password,:role )",{
+            c.execute("INSERT INTO authentication(full_name,father_name,gender,account_no,contact,username,password,role) VALUES (:full_name, :father_name, :gender, :account_no, :contact,  :username, :password,:role )",{
                 'full_name':user.get(),
                 'father_name':code.get(),
                 'gender':code1.get(),
-                'email':code2.get(),
+                'account_no':code2.get(),
                 'contact':confirm.get(),
                 'username':user2.get(),
                 'password':user3.get(),
@@ -1270,13 +943,13 @@ def adminRegisterQuery():
 
             #showinfo messagebox
             print("Admin Registered Successfully")
-            messagebox.showinfo("Sign up", "Sigh Up Sucessful")
+            messagebox.showinfo("Customer account creation", "Customer account created successfully")
 
             conn.commit()
             conn.close()
             
         except sqlite3.Error as error:
-                print("Could not create table authentication.")
+                print("Error","Something went wrong")
 
 
 
