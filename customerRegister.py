@@ -4,7 +4,7 @@ import sqlite3
 
 
 root=Tk()
-root.title('REGISTER')
+root.title("CUSTOMER REGISTER - BANKING APP")
 root.geometry('925x500+300+200')
 root.configure(bg='#fff')
 
@@ -19,14 +19,14 @@ conn= sqlite3.connect('customer_book.db')
 c=conn.cursor()
 
 
-# # #Create table
-# c.execute("""CREATE TABLE address (
-#     full name text,
-#     father name text,
+# #Create table
+# c.execute("""CREATE TABLE customer_register (
+#     full_name text,
+#     father_name text,
 #     gender text,
-#     email varchar,
+#     account_no int,
 #     contact int,
-#     saving acc text,
+#     saving_acc text,
 #     username varchar,
 #     password varchar
 # )""")
@@ -41,13 +41,13 @@ def submit():
     c=conn.cursor()
     
     #Insert into table
-    c.execute("INSERT INTO address VALUES (:full name, :father name, :gender, :email, :contact, :account type, :username, :password)",{
-        'full name':user.get(),
-        'father name':user1.get(),
+    c.execute("INSERT INTO customer_register VALUES (:full_name, :father_name, :gender, :account_no, :contact, :account_type, :username, :password)",{
+        'full_name':user.get(),
+        'father_name':user1.get(),
         'gender':code.get(),
-        'email':code1.get(),
+        'account_no':code1.get(),
         'contact':code2.get(),
-        'account type':confirm.get(),
+        'account_type':confirm.get(),
         'username':user2.get(),
         'password':user3.get()
 
@@ -131,11 +131,11 @@ def on_enter(e):
 def on_leave(e):
     name=code1.get()
     if name=='':
-        code1.insert(0,'Email')
+        code1.insert(0,'Account No')
 
 code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
 code1.grid(row=4,column=0, pady=10, ipadx=5)
-code1.insert(0,'Email')
+code1.insert(0,'Account No')
 code1.bind('<FocusIn>', on_enter)
 code1.bind('<FocusOut>', on_leave)
 
@@ -203,13 +203,13 @@ user3.bind('<FocusOut>', on_leave)
 signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white', command=submit)
 signin.grid(row=11,column=0)
 
-#label for already have an account?
-acc=Label(frame,text="Already have an account? ", fg='#2c3e4c', bg='white', font=('Microsoft YaHei UI Light', 9))
-acc.grid(row=12,column=0)
+# #label for already have an account?
+# acc=Label(frame,text="Already have an account? ", fg='#2c3e4c', bg='white', font=('Microsoft YaHei UI Light', 9))
+# acc.grid(row=12,column=0)
 
-#button for login
-login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
-login.grid(row=13,column=0)
+# #button for login
+# login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white')
+# login.grid(row=13,column=0)
 
 
 conn.commit()
