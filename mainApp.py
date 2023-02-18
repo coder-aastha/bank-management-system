@@ -867,7 +867,9 @@ def adminDashboard():
 # ============================= End  Customer Register Screen | Query ============================
 # ================================================================================================
 
-
+# ================================================================================================
+# ============================== Admin Login Screen | Query ======================================
+# ================================================================================================
 
 def adminLoginScreen():
     adminLogin = Toplevel()
@@ -944,10 +946,6 @@ def adminLoginScreen():
     # adminLogin.mainloop()
     # adminLogin.destroy()
 
-# ================================================================================================
-# =========================== Admin Login Screen | Query =========================================
-# ================================================================================================
-
 
 def adminLoginQuery():
         user = username.get()
@@ -984,7 +982,9 @@ def adminLoginQuery():
 # ============================== End Admin Login Screen | Query ==================================
 # ================================================================================================
 
-
+# ================================================================================================
+# ============================== Admin Registration Screen | Query ===============================
+# ================================================================================================
 
 
 def adminRegisterScreen():
@@ -1024,7 +1024,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=user.get()
-        if name=='':
+        if name=='Full Name':
             user.insert(0,'Full Name')
 
 
@@ -1041,7 +1041,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=code.get()
-        if name=="":
+        if name=="Father's Name":
             code.insert(0,"Father's Name")
 
     code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -1056,7 +1056,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=code1.get()
-        if name=='':
+        if name=='Gender':
             code1.insert(0,'Gender')
 
     code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -1072,7 +1072,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=code2.get()
-        if name=='':
+        if name=='Email':
             code2.insert(0,'Email')
 
     code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -1088,7 +1088,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=confirm.get()
-        if name=='':
+        if name=='Mobile Number':
             confirm.insert(0,'Mobile Number')
 
     confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -1152,9 +1152,6 @@ def adminRegisterScreen():
     # adminRegister.destroy()
     # adminLoginScreen
 
-# ================================================================================================
-# ===============================  Admin Register Screen | Query =================================
-# ================================================================================================
 
 def adminRegisterQuery():
     global password
@@ -1210,8 +1207,8 @@ def adminRegisterQuery():
 # ================================================================================================
 
 
-title_text = Label(root,text="WELCOME TO BANK",font=("Code New Roman",21,"bold"),bg="#00D7FF")
-title_text.grid(row=0,column=9)
+title_text = Label(root,fg='#fff',text="WELCOME TO THE BANK",font=("Arial",24,"bold italic"),bg="#5800FF")
+title_text.grid(row=0,column=9, ipady=10, ipadx=10)
 
 #frame 2
 frame1 = Frame(root,bg="#0096FF",height=600,width=400)
