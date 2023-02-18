@@ -12,7 +12,7 @@ It is very easy to use.
 <p>The tools used while making this project are shown below.</p>
 
 <br>
-<h4>Tools🧰</h3>
+<h3>Tools🧰</h3>
 <p>1. VS Code as a editor for writing code
 <p>2. Git as a version control
  <br>
@@ -28,3 +28,9 @@ It is very easy to use.
  <br>
   
  <h3>Screenshots</h3>
+ <br>
+ <br>
+ <h3>Features</h3>
+ <p>It provides user authentication</p>
+ <p>Customer can deposit, withdraw and check the balnce</p>
+ <p>Admin can open customer account, show customer details and close customer's account</p>
