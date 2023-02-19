@@ -13,17 +13,18 @@ It is very easy to use.
 
 <br>
 <h3>Tools🧰</h3>
-<p>1. VS Code as a editor for writing code
-<p>2. Git as a version control
+<p>1. VS Code as a editor for writing code</p>
+<p>2. Git as a version control</p>
 <br>
  
 <h3>Technology🧑‍💻</h3>
-<p>1. Python as a main programming language.
-<p>2. Tkinter python module for GUI interface.
-<p>3. SQLite3 as a database.
+<p>1. Python as a main programming language.</p>
+<p>2. Tkinter python module for GUI interface.</p>
+<p>3. SQLite3 as a database.</p>
  <br>
   
  <h3>Screenshots</h3>
+ <br>
  <br>
 
  <h3>Features</h3>
