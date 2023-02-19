@@ -15,22 +15,23 @@ It is very easy to use.
 <h3>Tools🧰</h3>
 <p>1. VS Code as a editor for writing code
 <p>2. Git as a version control
- <br>
 <br>
-<br>
+ 
 <h3>Technology🧑‍💻</h3>
 <p>1. Python as a main programming language.
-
 <p>2. Tkinter python module for GUI interface.
-
 <p>3. SQLite3 as a database.
- <br>
  <br>
   
  <h3>Screenshots</h3>
  <br>
- <br>
+
  <h3>Features</h3>
  <p>It provides user authentication</p>
  <p>Customer can deposit, withdraw and check the balnce</p>
  <p>Admin can open customer account, show customer details and close customer's account</p>
+ <br>
+ 
+ <h3>Color and Images</h3>
+[Color Hunt] (https://colorhunt.co/)<br>
+[Free Pick] (https://www.freepik.com/)
