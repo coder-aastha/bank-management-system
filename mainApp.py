@@ -4,7 +4,7 @@ from PIL import Image,ImageTk
 import sqlite3
 root = Tk()
 root.geometry("1944x1080")
-root["background"] = "#5800FF"
+root["background"] = "#4A50E9"
 root.title("Bank Management System")
 
 # ================================================================================================
@@ -132,8 +132,8 @@ def customerDashboard():
 
 def deposit():
     root=Toplevel()
-    root.title("Deposite money")
-    root["background"]="light green"
+    root.title("Deposit money")
+    root["background"]="#86E5FF"
     global name
 
     def depositeAmount():
@@ -149,7 +149,7 @@ def deposit():
                     'account_number': account_num.get(),
                     'amount': amount_to_deposit.get()
                 })
-            messagebox.showinfo('sucess','Deposited sucessfully')
+            messagebox.showinfo('Sucess','Deposited Sucessfully')
             
             main_database.commit()
             main_database.close()
@@ -158,7 +158,7 @@ def deposit():
             amount_to_deposit.delete(0,END)
 
         except sqlite3.Error as error:
-            print("Failed to despoite amount")
+            print("Failed to deposit amount")
 
 
     welcome=Label(root, text="Enter customer details to Deposit ", font=("Verdana Bold", 12),bg="oldlace", fg="blue2")
@@ -298,12 +298,12 @@ def customerLoginScreen():
         # entry username
 
     def on_enter(e):
-            user.delete(0, 'end')
+            username.delete(0, 'end')
 
     def on_leave(e):
-            name = user.get()
+            name = username.get()
             if name == '':
-                user.insert(0, 'Username')
+                username.insert(0, 'Username')
 
     username = Entry(frame, width=25, fg="black", border=1,
                     bg='white', font=('Microsoft YaHei UI Light', 11))
@@ -313,13 +313,13 @@ def customerLoginScreen():
 
         # entry for password
     def on_enter(e):
-            code.delete(0, 'end')
+            password.delete(0, 'end')
 
     def on_leave(e):
             global code
-            name = code.get()
+            name = password.get()
             if name == '':
-                code.insert(0, 'Password')
+                password.insert(0, 'Password')
 
     password = Entry(frame, width=25, fg='black', border=1,
                     bg='white', font=('Microsoft YaHei UI Light', 11))
@@ -623,7 +623,9 @@ def adminDashboard():
 # ============================= End  Customer Register Screen | Query ============================
 # ================================================================================================
 
-
+# ================================================================================================
+# ============================== Admin Login Screen | Query ======================================
+# ================================================================================================
 
 def adminLoginScreen():
     adminLogin = Toplevel()
@@ -700,10 +702,6 @@ def adminLoginScreen():
     # adminLogin.mainloop()
     # adminLogin.destroy()
 
-# ================================================================================================
-# =========================== Admin Login Screen | Query =========================================
-# ================================================================================================
-
 
 def adminLoginQuery():
         user = username.get()
@@ -740,7 +738,9 @@ def adminLoginQuery():
 # ============================== End Admin Login Screen | Query ==================================
 # ================================================================================================
 
-
+# ================================================================================================
+# ============================== Admin Registration Screen | Query ===============================
+# ================================================================================================
 
 
 def adminRegisterScreen():
@@ -780,7 +780,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=user.get()
-        if name=='':
+        if name=='Full Name':
             user.insert(0,'Full Name')
 
 
@@ -797,7 +797,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=code.get()
-        if name=="":
+        if name=="Father's Name":
             code.insert(0,"Father's Name")
 
     code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -812,7 +812,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=code1.get()
-        if name=='':
+        if name=='Gender':
             code1.insert(0,'Gender')
 
     code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -828,7 +828,9 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=code2.get()
-        if name=='':
+        if name=='Email':
+            code2.insert(0,'Email')
+        if name=='Email':
             code2.insert(0,'Account No')
 
     code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -844,7 +846,7 @@ def adminRegisterScreen():
 
     def on_leave(e):
         name=confirm.get()
-        if name=='':
+        if name=='Mobile Number':
             confirm.insert(0,'Mobile Number')
 
     confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
@@ -908,9 +910,6 @@ def adminRegisterScreen():
     # adminRegister.destroy()
     # adminLoginScreen
 
-# ================================================================================================
-# ===============================  Admin Register Screen | Query =================================
-# ================================================================================================
 
 def adminRegisterQuery():
     global password
@@ -966,11 +965,11 @@ def adminRegisterQuery():
 # ================================================================================================
 
 
-title_text = Label(root,text="WELCOME TO BANK",font=("Code New Roman",21,"bold"),bg="#00D7FF")
-title_text.grid(row=0,column=9)
+title_text = Label(root,fg='white',text="WELCOME TO THE BANK",font=("Arial",30,"bold italic"),bg="#4A50E9")
+title_text.grid(row=0,column=9, ipady=10, ipadx=10)
 
 #frame 2
-frame1 = Frame(root,bg="#0096FF",height=600,width=400)
+frame1 = Frame(root,bg="#FEFFFF",height=600,width=400)
 frame1.grid(row=1,column=4,rowspan=4,columnspan=4,pady=70,padx=40)
 
 #frame 3
@@ -985,11 +984,11 @@ label_img = Label(frame2,image=bank_img).grid(row=0,column=0)
 
 
 # Admin Welcome Button
-admin_button = Button(frame1,text="Admin",bg="#72FFFF",fg="black",font = ("Code New Roman",10,"bold"),height=10,width=20,command=adminLoginScreen)
+admin_button = Button(frame1,text="ADMIN",bg="#3CF3FF",fg="black",cursor="hand2",font= ("Verdana Bold",10,"bold"),height=10,width=20,command=adminLoginScreen)
 admin_button.grid(row=0,column=1,padx=100,pady=74)
 
 # Customer Welcome Button
-login_button = Button(frame1,text="Customer",bg="#72FFFF",fg="black",font= ("Code New Roman",10,"bold"),height=10,width=20,command=customerLoginScreen)
+login_button = Button(frame1,text="CUSTOMER",bg="#3CF3FF",fg="black",cursor="hand2",font= ("Verdana Bold",10,"bold"),height=10,width=20,command=customerLoginScreen)
 login_button.grid(row=1,column=1,pady=65)
 
 
