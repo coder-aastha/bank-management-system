@@ -1,17 +1,21 @@
+import random
 from tkinter import *
+from tkinter import messagebox
 from tkinter import messagebox
 from PIL import Image,ImageTk
 import sqlite3
+import sqlite3
 root = Tk()
 root.geometry("1944x1080")
-root["background"] = "#5800FF"
+root["background"] = "#4A50E9"
 root.title("Bank Management System")
-
 
 # ================================================================================================
 # ============================== CREATING DATABASE FOR BANK APP ==================================
 # ================================================================================================
 
+
+# =========================== CREATING TABLE FOR AUTHENTICATION ==================================
 
 # try:
 #     # Giving database name
@@ -21,8 +25,6 @@ root.title("Bank Management System")
 #     c = main_database.cursor()
 
 #     print(c)
-
-# =========================== CREATING TABLE FOR AUTHENTICATION ==================================
 
 #     # Creating customer table
 #     c.execute("""CREATE TABLE authentication(
@@ -46,28 +48,16 @@ root.title("Bank Management System")
 
 # except sqlite3.Error as error:
 #         print("Could not create table authentication.")
-
-
-
 # ================================================================================================
 # ============================== CREATING DATABASE FOR BANK APP ==================================
 # ================================================================================================
 
 
-#=============================================================================================
-#============================== END CREATING TABLE FOR AUTHENTICATION ========================
-#=============================================================================================
-
-
-#=============================================================================================
-#========================CREATING WITHDRAW SCREEN ============================================
-#=============================================================================================
-
 def withdraw():
     global label_img
     root=Toplevel()
     root.title("Withdraw money")
-    root["background"]="pink"
+    root["background"]="#86E5FF"
 
     welcome=Label(root, text="Enter customer details to Withdraw ", font=("Verdana Bold", 12),bg="oldlace", fg="blue2")
     welcome.grid(row=0,column=0)
@@ -101,48 +91,28 @@ def withdraw():
     Withdraw_btn=Button(root,text="Withdraw", fg="white", bg="blue2",font=("Verdana Bold", 14))
     Withdraw_btn.grid(row=10,column=1)
 
+def admin_page_open():
+    admin_page = Toplevel()
+    admin_page.geometry("1100x750")
+    admin_page["background"] = "#86E5FF"
+    admin_features_frame = Frame(admin_page,bg="#86E5FF",height=750,width=400)
+    admin_features_frame.grid(row=0,column=0,padx=20,pady=20)
+    open_acc_button = Button(admin_features_frame,text="Opening Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
+    open_acc_button.grid(row=0,column=0)
+    cus_details_button = Button(admin_features_frame,text="Showing Customer Details",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
+    cus_details_button.grid(row=1,column=0,pady=20)
+    closing_acc_button = Button(admin_features_frame,text="Closing Account",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24)
+    closing_acc_button.grid(row=2,column=0,pady=2)
+
+    amount_to_withdraw_label=Label(root,text="Amount to Withdraw")
+    amount_to_withdraw_label.grid(row=3,column=0)
+
+    Withdraw_btn=Button(root,text="Withdraw", fg="white", bg="blue2",font=("Verdana Bold", 14))
+    Withdraw_btn.grid(row=10,column=1)
+
 #=============================================================================================
 #=======================END OF CREATING WITHDRAW DASHBOARD SCREEN=============================
 #=============================================================================================
-
-
-
-#=============================================================================================
-#============================CREATING CUSTOMERS DASHBOARD SCREEN==============================
-#=============================================================================================
-
-def customerDashboard():
-    global customer_page
-    global customer_features_frame
-    customer_page = Toplevel()
-    customer_page.geometry("1100x740")
-    customer_page["background"] = "#86E5FF"
-
-    customer_features_frame = Frame(customer_page,bg="#86E5FF",height=750,width=400)
-    customer_features_frame.grid(row=0,column=0,padx=20,pady=20)
-
-    deposit_button = Button(customer_features_frame,text="Deposit",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=deposit)
-    deposit_button.grid(row=0,column=0)
-
-    withdraw_button = Button(customer_features_frame,text="Withdraw",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=withdraw)
-    withdraw_button.grid(row=1,column=0,pady=20)
-
-    balance_enquiry_button = Button(customer_features_frame,text="Balance enquiry",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=balance_enquiry)
-    balance_enquiry_button.grid(row=2,column=0,pady=1)
-
-    customer_image_frame = Frame(customer_page,bg="#86E5FF",height=700,width=600)
-    customer_image_frame.grid(row=0,column=5,padx=10,pady=0)
-
-    customer_img1 = Image.open("customer_image.jpg")
-    customer_img1 = customer_img1.resize((720,700))     #resizing image
-    customer_img = ImageTk.PhotoImage(customer_img1)
-    global label_customer_img
-    label_customer_img = Label(customer_image_frame,image=customer_img).grid(row=0,column=8,padx=50)
-
-#=============================================================================================
-#===========================END OF CREATING CUSTOMERS DASHBOARD SCREEN========================
-#=============================================================================================
-
 
 
 #=============================================================================================
@@ -304,6 +274,42 @@ def showing_customer_details():
 #=============================================================================================
 
 
+#=============================================================================================
+#============================CREATING CUSTOMERS DASHBOARD SCREEN==============================
+#=============================================================================================
+
+def customerDashboard():
+    global customer_page
+    global customer_features_frame
+    customer_page = Toplevel()
+    customer_page.geometry("1100x740")
+    customer_page["background"] = "#86E5FF"
+
+    customer_features_frame = Frame(customer_page,bg="#86E5FF",height=750,width=400)
+    customer_features_frame.grid(row=0,column=0,padx=20,pady=20)
+
+    deposit_button = Button(customer_features_frame,text="Deposit",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=deposit)
+    deposit_button.grid(row=0,column=0)
+
+    withdraw_button = Button(customer_features_frame,text="Withdraw",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=withdraw)
+    withdraw_button.grid(row=1,column=0,pady=20)
+
+    balance_enquiry_button = Button(customer_features_frame,text="Balance enquiry",bg="#5BC0F8",font=("Code New Roman",10,"bold"),height=13,width=24,command=balance_enquiry)
+    balance_enquiry_button.grid(row=2,column=0,pady=1)
+
+    customer_image_frame = Frame(customer_page,bg="#86E5FF",height=700,width=600)
+    customer_image_frame.grid(row=0,column=5,padx=10,pady=0)
+
+    customer_img1 = Image.open("customer_image.jpg")
+    customer_img1 = customer_img1.resize((720,700))     #resizing image
+    customer_img = ImageTk.PhotoImage(customer_img1)
+    global label_customer_img
+    label_customer_img = Label(customer_image_frame,image=customer_img).grid(row=0,column=8,padx=50)
+
+#=============================================================================================
+#===========================END OF CREATING CUSTOMERS DASHBOARD SCREEN========================
+#=============================================================================================
+
 
 # =============================================================================================
 # ============================== Customer Login Screen | Query ================================
@@ -317,7 +323,6 @@ def customerLoginScreen():
 
     global username
     global password
-
 
     mainframe = Frame(customerLogin, bg='#fff')
     mainframe.grid(row=0, column=0)
@@ -356,7 +361,6 @@ def customerLoginScreen():
             password.delete(0, 'end')
 
     def on_leave(e):
-            global password
             name = password.get()
             if name == '':
                 password.insert(0, 'Password')
@@ -372,22 +376,12 @@ def customerLoginScreen():
                     bg='#57a1f8', fg='white', border=0, command=customerLoginQuery)
     btn.grid(row=4, column=0)
 
-    #     # text
-    # label = Label(frame, text="Don't have an account? ", fg='black',
-    #                 bg='white', font=('Microsoft YaHei UI Light', 9))
-    # label.grid(row=5, column=0)
-
-    #     # sign up button
-    # sign_up = Button(frame, width=20, pady=7, text='Sign Up', border=0,
-    #                     bg='#57a1f8', cursor='hand2', fg='white', command=customerRegisterScreen)
-    # sign_up.grid(row=6, column=0)
-
 
 
 def customerLoginQuery():
     user = username.get()
     psw = password.get()
-    role=1
+    role=0
 
     if len(user) == 0 or len(psw) == 0:
         messagebox.showinfo("Warning", "Fields cannot be empty")
@@ -396,7 +390,7 @@ def customerLoginQuery():
             main_database = sqlite3.connect('bank.db')
             c = main_database.cursor()
                 
-            c.execute("SELECT * FROM authentication WHERE username = ? AND password = ?",(user,psw))
+            c.execute("SELECT * FROM authentication WHERE username = ? AND password = ? AND role = ?",(user,psw, role))
             data = c.fetchone()
 
             if data:
@@ -418,8 +412,6 @@ def customerLoginQuery():
 # ================================================================================================
 
 
-
-
 # ================================================================================================
 # ===============================Customer Register Screen | Query ================================
 # ================================================================================================
@@ -431,6 +423,10 @@ def customerRegisterQuery():
     username = user2.get()
     password = user3.get()
 
+    account_number = random.randint(100000, 999999)
+
+    userAccountNumber = "063418900"+str(account_number)
+    print(userAccountNumber)
 
 
     if len(username) == 0 or len(password) == 0:
@@ -444,14 +440,15 @@ def customerRegisterQuery():
             c=conn.cursor()
             
             #Insert into table
-            c.execute("INSERT INTO authentication(full_name,father_name,gender,account_no,contact,username,password) VALUES (:full_name, :father_name, :gender, :account_no, :contact,  :username, :password)",{
+            c.execute("INSERT INTO authentication(full_name,father_name,gender,account_no,contact,username,password, role) VALUES (:full_name, :father_name, :gender, :account_no, :contact,  :username, :password, :role)",{
                 'full_name':user.get(),
                 'father_name':code.get(),
                 'gender':code1.get(),
-                'account_no':code2.get(),
+                'account_no':userAccountNumber,
                 'contact':confirm.get(),
                 'username':user2.get(),
                 'password':user3.get(),
+                "role":0
 
 
             })
@@ -629,7 +626,9 @@ def customerRegisterScreen():
     # customerRegister.destroy()
     # customerLoginScreen
 
-
+# ================================================================================================
+# ============================= End  Customer Register Screen | Query ============================
+# ================================================================================================
 
     
 def adminDashboard():
@@ -656,12 +655,9 @@ def adminDashboard():
 
     admin_page.mainloop()
 
-
 # ================================================================================================
-# ============================= End  Customer Register Screen | Query ============================
+# =========================== Admin Login Screen | Query =========================================
 # ================================================================================================
-
-
 
 def adminLoginScreen():
     adminLogin = Toplevel()
@@ -737,10 +733,6 @@ def adminLoginScreen():
 
     # adminLogin.mainloop()
     # adminLogin.destroy()
-
-# ================================================================================================
-# =========================== Admin Login Screen | Query =========================================
-# ================================================================================================
 
 
 def adminLoginQuery():
@@ -956,7 +948,7 @@ def adminRegisterQuery():
     password = user3.get()
     print(username)
 
-    if len(username) == 0 :
+    if len(username) == 0 or len(password) == 0:
         messagebox.showerror("Error", "Fields cannot be empty")
     else:
         try:
@@ -988,6 +980,224 @@ def adminRegisterQuery():
             
         except sqlite3.Error as error:
                 print("Error","Something went wrong")
+        
+
+
+# ================================================================================================
+# ============================== End Admin Login Screen | Query ==================================
+# ================================================================================================
+
+# ================================================================================================
+# ============================== Admin Registration Screen | Query ===============================
+# ================================================================================================
+
+
+def adminRegisterScreen():
+    global user
+    global user2
+    global user3
+    global code
+    global code1
+    global code2
+    global confirm
+    global confirm1
+
+    adminRegister=Toplevel()
+    adminRegister.title('ADMIN REGISTER - BANKING APP')
+    adminRegister.geometry('925x500+300+200')
+    adminRegister.configure(bg='#fff')
+
+    #mainframe
+    mainframe= Frame(adminRegister, bg="#fff")
+    mainframe.grid(row=0,column=0)
+
+    #subframe 1
+    logo=Frame(mainframe,width=450,height=500,bg='#3cdfff')
+    logo.grid(row=0,column=0)
+
+    #subframe 2
+    frame=Frame(mainframe,width=600,height=500,padx=180, bg='#fff')
+    frame.grid(row=0, column=1)
+
+    #the 
+    heading= Label(frame,text='Sign Up', fg='#57a1f8',bg='white',font=('Microsoft YaHei UI Light', 20, 'bold'))
+    heading.grid(row=0,column=0)
+
+    #full name
+    def on_enter(e):
+        user.delete(0, 'end')
+
+    def on_leave(e):
+        name=user.get()
+        if name=='Full Name':
+            user.insert(0,'Full Name')
+
+
+    user=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
+    user.grid(row=1,column=0, pady=10, ipadx=5)
+    user.insert(0,'Full Name')
+    user.bind('<FocusIn>', on_enter)
+    user.bind('<FocusOut>', on_leave)
+
+
+    #father's name
+    def on_enter(e):
+        code.delete(0,'end')
+
+    def on_leave(e):
+        name=code.get()
+        if name=="Father's Name":
+            code.insert(0,"Father's Name")
+
+    code= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
+    code.grid(row=2,column=0, pady=10, ipadx=5)
+    code.insert(0,"Father's Name")
+    code.bind('<FocusIn>', on_enter)
+    code.bind('<FocusOut>', on_leave)
+
+    #gender
+    def on_enter(e):
+        code1.delete(0,'end')
+
+    def on_leave(e):
+        name=code1.get()
+        if name=='Gender':
+            code1.insert(0,'Gender')
+
+    code1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
+    code1.grid(row=3,column=0, pady=10, ipadx=5)
+    code1.insert(0,'Gender')
+    code1.bind('<FocusIn>', on_enter)
+    code1.bind('<FocusOut>', on_leave)
+
+
+    #email
+    def on_enter(e):
+        code2.delete(0,'end')
+
+    def on_leave(e):
+        name=code2.get()
+        if name=='Email':
+            code2.insert(0,'Email')
+        if name=='Email':
+            code2.insert(0,'Account No')
+
+    code2= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
+    code2.grid(row=4,column=0, pady=10, ipadx=5)
+    code2.insert(0,'Account No')
+    code2.bind('<FocusIn>', on_enter)
+    code2.bind('<FocusOut>', on_leave)
+
+
+    #mobile number
+    def on_enter(e):
+        confirm.delete(0,'end')
+
+    def on_leave(e):
+        name=confirm.get()
+        if name=='Mobile Number':
+            confirm.insert(0,'Mobile Number')
+
+    confirm= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
+    confirm.grid(row=5,column=0, pady=10, ipadx=5)
+    confirm.insert(0,'Mobile Number')
+    confirm.bind('<FocusIn>', on_enter)
+    confirm.bind('<FocusOut>', on_leave)
+
+
+    #first name
+    def on_enter(e):
+        user2.delete(0, 'end')
+
+    def on_leave(e):
+        name=user2.get()
+        if name=='':
+            user2.insert(0,'Enter a Username')
+
+
+    user2=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
+    user2.grid(row=6,column=0, pady=10, ipadx=5)
+    # user2.insert(0,'Enter a Username')
+    user2.bind('<FocusIn>', on_enter)
+    user2.bind('<FocusOut>', on_leave)
+
+    #first name
+    def on_enter(e):
+        user3.delete(0, 'end')
+
+    def on_leave(e):
+        name=user3.get()
+        if name=='':
+            user3.insert(0,'Enter Password')
+
+
+    user3=Entry(frame,width=25, fg="black", border=1, bg='white', font=('Microsoft YaHei UI Light', 11))
+    user3.grid(row=7,column=0, pady=10, ipadx=5)
+    user3.bind('<FocusIn>', on_enter)
+    user3.bind('<FocusOut>', on_leave)
+
+    ####
+    confirm1= Entry(frame,width=25, fg='black', border=1, bg= 'white', font=('Microsoft YaHei UI Light', 11))
+    confirm1.grid(row=8,column=0, pady=10, ipadx=5)
+    confirm1.insert(0,'1')
+    confirm1.config(state= "disabled")
+
+
+    #button for sign in
+    signin= Button(frame, width=20,background='#3cdfff', text='Sign In',border=0, bg='#3cdfff', cursor='hand2', fg='white', command=adminRegisterQuery)
+    signin.grid(row=10,column=0)
+
+    #label for already have an account?
+    acc=Label(frame,text="Already have an account? ", fg='#2c3e4c', bg='white', font=('Microsoft YaHei UI Light', 9))
+    acc.grid(row=11,column=0)
+
+    #button for login
+    login= Button(frame, width=15, text='Log In',border=0, bg='#3cdfff', cursor='hand2', fg='white', command=adminLoginScreen)
+    login.grid(row=12,column=0)
+
+    # adminRegister.mainloop()
+    # adminRegister.destroy()
+    # adminLoginScreen
+
+
+def adminRegisterQuery():
+    global password
+    username = user2.get()
+    password = user3.get()
+    print(username)
+
+    if len(username) == 0 :
+        messagebox.showerror("Error", "Fields cannot be empty")
+    else:
+        try:
+            #create a databases or connect to one
+            conn=sqlite3.connect('bank.db')
+
+            #create cursor
+            c=conn.cursor()
+            
+            #Insert into table
+            c.execute("INSERT INTO authentication(full_name,father_name,gender,account_no,contact,username,password,role) VALUES (:full_name, :father_name, :gender, :account_no, :contact,  :username, :password,:role )",{
+                'full_name':user.get(),
+                'father_name':code.get(),
+                'gender':code1.get(),
+                'account_no':code2.get(),
+                'contact':confirm.get(),
+                'username':user2.get(),
+                'password':user3.get(),
+                'role': 1
+
+            })
+
+            #showinfo messagebox
+            print("Admin Registered Successfully")
+            messagebox.showinfo("Customer account creation", "Customer account created successfully")
+
+            conn.commit()
+            conn.close()
+            
+        except sqlite3.Error as error:
+                print("Error","Something went wrong")
 
 
 
@@ -1004,8 +1214,8 @@ def adminRegisterQuery():
 # ================================================================================================
 
 
-title_text = Label(root,text="WELCOME TO BANK",font=("Code New Roman",21,"bold"),bg="#00D7FF")
-title_text.grid(row=0,column=9)
+title_text = Label(root,fg='white',text="WELCOME TO THE BANK",font=("Arial",30,"bold italic"),bg="#4A50E9")
+title_text.grid(row=0,column=9, ipady=10, ipadx=10)
 
 #frame 2
 frame1 = Frame(root,bg="#0096FF",height=600,width=400)
