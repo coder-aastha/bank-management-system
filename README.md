@@ -22,24 +22,7 @@ It is very easy to use.
 <p>2. Tkinter python module for GUI interface.</p>
 <p>3. SQLite3 as a database.</p>
  <br>
-  
- <h3>Screenshots</h3>
-<table>
-  <tr>
-    <td><img src='image_readme/admin_login.png' alt="AdminLoginPage"  height='350' width='600'> </td>
-   </tr>
-   <tr>
-    <td><img src='image_readme/Customer_Login_Screen.png' alt="CustomerLoginPage" height='350' width='600'></td>
-  </tr>
-  <tr>
-  <td><img src='image_readme/Customer_View.png' alt="ShowCustomerDetails" height='350' width='600'></td>
-  </tr>
-  <tr>
-  <td><img src='image_readme/Welcome_Page.png' alt="WelcomePage" height='350' width='600'></td>
-  </tr>
- </table>
- <br>
- <br>
+
 
  <h3>Features</h3>
  <p>It provides user authentication</p>
